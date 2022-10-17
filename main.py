@@ -6,10 +6,12 @@ display = pygame.display.set_mode((800, 500))
 pygame.display.set_caption("Platformer")
 clock = pygame.time.Clock()
 
+# Image Libraries
 player_imgs = ["./gfx/player1.png", "./gfx/player2.png", "./gfx/player3.png", "./gfx/player4.png"]
 btn_imgs = ["./gfx/play_btn.png", "./gfx/", "./gfx/", "./gfx/"]
 enemy_imgs = []
 
+# Frames Per Second
 FPS = 1
 
 # Background Class
@@ -57,7 +59,8 @@ class Btn(pygame.Rect):
         m_y = pos[1]
         if (m_x > self.x and m_x < self.x + 100) and (m_y > self.y and m_y < self.y + 50):
             main()
-# main game loop
+
+# Start Screen loop
 def Start():
     run = True
     bg = Background()
@@ -74,6 +77,7 @@ def Start():
         btn.update()
         pygame.display.update()
 
+# Main Game Loop
 def main():
     run = True
     player = Player(50, 50)
