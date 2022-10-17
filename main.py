@@ -10,7 +10,7 @@ player_imgs = ["./gfx/player1.png", "./gfx/player2.png", "./gfx/player3.png", ".
 btn_imgs = ["./gfx/play_btn.png", "./gfx/", "./gfx/", "./gfx/"]
 enemy_imgs = []
 
-FPS = 5
+FPS = 1
 
 # Background Class
 class Background(pygame.Rect):
