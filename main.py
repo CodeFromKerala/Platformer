@@ -29,19 +29,19 @@ class Player(pygame.Rect):
         self.centerx = x
         self.centery = y
         self.image = pygame.image.load(player_imgs[0])
-        self.MoveW = False
         self.MoveA = False
-        self.MoveS = False
         self.MoveD = False
+        self.jump = False
     def update(self):
-        if self.MoveW == True:
-            self.centery -= 1
-        if self.MoveS == True:
-            self.centery += 1
         if self.MoveD == True:
             self.centerx += 1
         if self.MoveA == True:
             self.centerx -= 1
+        if self.jump == True:
+            self.move([0, 20])
+            self.jump = False
+        if self.y > 450:
+            self.centery += 1
         display.blit(self.image, self)
 
 # Button Class
@@ -80,29 +80,23 @@ def Start():
 # Main Game Loop
 def main():
     run = True
-    player = Player(50, 50)
+    player = Player(450, 450)
     clock.tick(FPS)
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_w:
-                    player.MoveW = True
-                if event.key == pygame.K_s:
-                    player.MoveS = True
-                if event.key == pygame.K_a:
+                if event.key == pygame.K_LEFT:
                     player.MoveA = True
-                if event.key == pygame.K_d:
+                if event.key == pygame.K_RIGHT:
                     player.MoveD = True
+                if event.key == pygame.K_SPACE:
+                    player.jump = True
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_w:
-                    player.MoveW = False
-                if event.key == pygame.K_s:
-                    player.MoveS = False
-                if event.key == pygame.K_a:
+                if event.key == pygame.K_LEFT:
                     player.MoveA = False
-                if event.key == pygame.K_d:
+                if event.key == pygame.K_RIGHT:
                     player.MoveD = False
         display.fill((255, 255, 255))
         player.update()
